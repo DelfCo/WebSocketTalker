@@ -8,22 +8,41 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="WebSocket Talker" VerticalAlignment="Top" FontSize="32"/>
-        
+
         <StackPanel HorizontalAlignment="Left" Height="51" Margin="10,58,0,0" VerticalAlignment="Top" Width="1260" Orientation="Horizontal" >
             <TextBlock x:Name="urlCaption" HorizontalAlignment="Left" Margin="0,16,0,15" TextWrapping="Wrap" Text="WebSockets echo server URL" VerticalAlignment="Center" Width="203"/>
-            <TextBox x:Name="urlBox" HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="892"/>
-            <Button x:Name="connectButton" Content="Connect" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center" Width="80"/>
+            <TextBox x:Name="urlBox" HorizontalAlignment="Left" Margin="0,10,0,9.333" TextWrapping="Wrap" 
+                     Text="ws://delayedwsazure.azurewebsites.net/DelayedEchoWebSocket.ashx " 
+                     VerticalAlignment="Center" Width="868"/>
+            <Button x:Name="connectButton" Content="Connect" HorizontalAlignment="Left" Margin="0,10,0,9" 
+                    VerticalAlignment="Center" Width="102" Click="connectButton_Click"/>
         </StackPanel>
-        
+
         <StackPanel HorizontalAlignment="Left" Height="51" Margin="10,109,0,0" VerticalAlignment="Top" Width="1260" Orientation="Horizontal" >
             <TextBlock x:Name="inputCaption" HorizontalAlignment="Left" Margin="0,16,0,15" TextWrapping="Wrap" Text="Text to send" VerticalAlignment="Center" Width="203"/>
-            <TextBox x:Name="inputBox" HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="892"/>
-            <Button x:Name="sendButton" Content="Send" HorizontalAlignment="Left" Margin="0,10,0,9" VerticalAlignment="Center" Width="80"/>
+            <TextBox x:Name="inputBox" HorizontalAlignment="Left" Margin="0,10,0,9.333" TextWrapping="Wrap" 
+                     Text="" 
+                     VerticalAlignment="Center" Width="868"/>
+            <Button x:Name="sendButton" Content="Send" HorizontalAlignment="Left" Margin="0,10,0,9" 
+                    VerticalAlignment="Center" Width="102" Click="sendButton_Click"/>
         </StackPanel>
-        
+
         <TextBlock x:Name="outputCaption" HorizontalAlignment="Left" Margin="10,185,0,0" TextWrapping="Wrap" Text="Output:" VerticalAlignment="Top"/>
         <TextBox x:Name="outputBox" HorizontalAlignment="Left" Margin="10,210,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="500" Width="1161"/>
-
+        <RelativePanel>
+            <StackPanel x:Name="StatusPanel" Orientation="Vertical" 
+                        RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" 
+                        RelativePanel.AlignLeftWithPanel="True">
+                <TextBlock x:Name="StatusLabel" Margin="10,0,0,10" TextWrapping="Wrap" Text="Status:" />
+                <Border x:Name="StatusBorder" Margin="0,0,0,0">
+                    <ScrollViewer VerticalScrollMode="Auto"  VerticalScrollBarVisibility="Auto" MaxHeight="200">
+                        <TextBlock x:Name="StatusBlock" FontWeight="Bold" 
+                                   MaxWidth="{Binding ElementName=outputBox, Path=ActualWidth}" Margin="10,10,10,20" TextWrapping="Wrap"  />
+                    </ScrollViewer>
+                </Border>
+            </StackPanel>
+        </RelativePanel>
     </Grid>
 </Page>
